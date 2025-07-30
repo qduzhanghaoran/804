@@ -26,7 +26,19 @@ bool Merge(SqList &L1, SqList &L2, SqList &L);
 bool Reverse_array(ELemType A[], int left, int right, int arrarSize);
 bool Exchang(ELemType A[], int m, int n, int arraysize);
 bool SearchExchangeInsert(ELemType A[], ELemType x);
-int M_Search_On(int A[],int B[],int n);
-int M_Search_logn(int A[],int B[],int n);
-int Majority(int A[],int n);
-int findMissMid(int A[],int n);
+int M_Search_On(int A[], int B[], int n);
+int M_Search_logn(int A[], int B[], int n);
+int Majority(int A[], int n);
+int findMissMid(int A[], int n);
+
+// 单链表
+typedef struct LNode
+{
+    /* data */
+    ELemType data;
+    struct LNode *next;
+} LNode, *LinkList;
+
+int Length(LinkList L);
+LNode *GetElem(LinkList L,int i);
+bool LinklistInsert(LinkList L,int i,ELemType e);

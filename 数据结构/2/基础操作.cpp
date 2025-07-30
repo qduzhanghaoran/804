@@ -63,3 +63,35 @@ int LocateElem(SqList &L, ELemType e)
         }
     }
 }
+
+//单链表
+
+int Length(LinkList L)
+{
+    int len=0;
+    LNode *p=L;
+    while(p->next!=NULL)
+    {
+        len++;
+        p=p->next;
+    }
+    return len;
+}
+
+LNode *GetElem(LinkList L,int i)
+{
+    //查找第i个元素
+    LNode *p=L;
+    int j=0;
+    while(p->next!=NULL && j<i)
+    {
+        p=p->next;
+        j++;
+    }
+    return p;
+}
+
+bool LinklistInsert(LinkList L,int i,ELemType e)
+{
+    
+}
