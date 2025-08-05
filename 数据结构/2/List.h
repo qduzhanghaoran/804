@@ -42,3 +42,27 @@ typedef struct LNode
 int Length(LinkList L);
 LNode *GetElem(LinkList L,int i);
 bool LinklistInsert(LinkList L,int i,ELemType e);
+bool LinkListDelete(Linklist &L,int i,ElemType &e);
+LinkList List_HeadInsert(LinkList &L);
+LinkList List_TailInsert(LinkList &L);
+
+//双链表
+typedef struct DNode
+{
+    /* data */
+    ELemType data;
+    struct DNode *prior,*next;
+}DNode,*DLinkList;
+
+//同理插入删除 只是对指针操作不同
+
+
+//静态链表
+#define MAX 50
+typedef struct 
+{
+    /* data */
+    ELemType data;
+    int next
+}SLinkList[MAX];
+

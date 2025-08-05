@@ -64,34 +64,110 @@ int LocateElem(SqList &L, ELemType e)
     }
 }
 
-//单链表
+// 单链表
 
 int Length(LinkList L)
 {
-    int len=0;
-    LNode *p=L;
-    while(p->next!=NULL)
+    int len = 0;
+    LNode *p = L;
+    while (p->next != NULL)
     {
         len++;
-        p=p->next;
+        p = p->next;
     }
     return len;
 }
 
-LNode *GetElem(LinkList L,int i)
+LNode *GetElem(LinkList L, int i)
 {
-    //查找第i个元素
-    LNode *p=L;
-    int j=0;
-    while(p->next!=NULL && j<i)
+    // 查找第i个元素
+    LNode *p = L;
+    int j = 0;
+    while (p->next != NULL && j < i)
     {
-        p=p->next;
+        p = p->next;
         j++;
     }
     return p;
 }
 
-bool LinklistInsert(LinkList L,int i,ELemType e)
+bool LinklistInsert(LinkList L, int i, ELemType e)
 {
-    
+    LNode *p = L;
+    int j = 0;
+    while (p != NULL && j < i - 1) // 找到第i-1个位置
+    {
+        p = p->next;
+        j++;
+    }
+
+    if (p == NULL)
+        return false;
+
+    LNode *s = (LNode *)malloc(sizeof(LNode));
+    s->data = e;
+    s->next = p->next;
+    p->next = s;
+    return true;
+
+    // 节点后插操作
+
+    // 我们也可以实现前插操作，同样的找到了第i-1个元素，实现后插元素将Nodei-1与s数据相互交换即可
+}
+
+bool LinkListDelete(Linklist &L, int i, ElemType &e)
+{
+    LNode *p = L;
+    int j = 0;
+    while (p != NULL && j < i - 1)
+    {
+        p = p->next;
+        j++;
+    }
+    if (p->next == NULL || j > i - 1)
+        return false;
+
+    LNode *q = *p->next;
+    e = q->data;
+    p->next = q->next;
+    free(q);
+    return true;
+}
+
+LinkList List_HeadInsert(LinkList &L)
+{
+    // 头插法建立新链表
+    LNode *s;
+    int x; // 输入元素 输入9999停止
+    L = (LNode *)malloc(sizeof(LNode));
+    L->next = NULL;
+    scanf("%d", &x);
+    while (x != 9999)
+    {
+        s = (LNode *)malloc(sizeof(LNode));
+        s->data = x;
+        s->next = L->next;
+        L->next = s;
+        scanf("%d", &x);
+    }
+    return L;
+}
+
+LinkList List_TailInsert(LinkList &L)
+{
+    LNode *s;
+    int x;
+    L = (LNode *)malloc(sizeof(LNode));
+    L->next = NULL;
+    LNode *r = L;
+    scanf("%d", &x);
+    while (x != 9999)
+    {
+        s = (LNode *)malloc(sizeof(LNode));
+        s->data = x;
+        r->next = s;
+        r = s;
+        scanf("%d", &x);
+    }
+    return true;
 }
