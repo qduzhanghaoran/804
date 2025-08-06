@@ -8,10 +8,10 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "d:/804/数据结构/2",
-      "program": "d:/804/数据结构/2/build/Debug/outDebug",
+      "cwd": "d:/804/数据结构/3",
+      "program": "d:/804/数据结构/3/build/Debug/outDebug",
       "MIMode": "gdb",
-      "miDebuggerPath": "Z:\\C语言环境\\mingw64\\bin\\gdb.exe",
+      "miDebuggerPath": "gdb",
       "setupCommands": [
         {
           "description": "Enable pretty-printing for gdb",

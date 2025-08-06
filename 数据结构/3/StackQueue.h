@@ -28,4 +28,15 @@ typedef struct Linknode
 */
 
 //队列
+//队列顺序存储
+#define MaxSize 50
+typedef struct 
+{
+    /* data */
+    ELemType data[MaxSize];
+    int front,rear;
+}SqQueue;
+
+//循环队列
+
 
