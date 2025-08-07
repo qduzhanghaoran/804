@@ -115,7 +115,7 @@ bool LinklistInsert(LinkList L, int i, ELemType e)
     // 我们也可以实现前插操作，同样的找到了第i-1个元素，实现后插元素将Nodei-1与s数据相互交换即可
 }
 
-bool LinkListDelete(Linklist &L, int i, ElemType &e)
+bool LinkListDelete(LinkList &L, int i, ELemType &e)
 {
     LNode *p = L;
     int j = 0;
@@ -127,7 +127,7 @@ bool LinkListDelete(Linklist &L, int i, ElemType &e)
     if (p->next == NULL || j > i - 1)
         return false;
 
-    LNode *q = *p->next;
+    LNode *q = p->next;
     e = q->data;
     p->next = q->next;
     free(q);
@@ -169,5 +169,4 @@ LinkList List_TailInsert(LinkList &L)
         r = s;
         scanf("%d", &x);
     }
-    return true;
 }

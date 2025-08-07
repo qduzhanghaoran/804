@@ -133,7 +133,7 @@ bool Exchang(ELemType A[], int m, int n, int arraysize)
     Reverse_array(A, n, m + n - 1, arraysize);
 }
 
-bool SearchExchangeInsert(ELemType A[], ELemType x)
+bool SearchExchangeInsert(ELemType A[], ELemType x,int n)
 {
     // 数组中元素有序递增，最高效查找x，如果找到和后继元素交换，否则插入x保持递增
     /*二分查找*/
@@ -209,7 +209,7 @@ int M_Search_logn(int A[], int B[], int n)
             return A[midA];
         if (A[midA] < B[midB])
         {
-            if ((rightA - lefeA + 1) % 2 != 0)
+            if ((rightA - leftA + 1) % 2 != 0)
             {
                 leftA = midA;
                 rightB = midB;
@@ -222,7 +222,7 @@ int M_Search_logn(int A[], int B[], int n)
         }
         else
         {
-            if ((rightA - lefeA + 1) % 2 != 0)
+            if ((rightA - leftA + 1) % 2 != 0)
             {
                 rightA = midA;
                 leftB = midB;
@@ -230,12 +230,12 @@ int M_Search_logn(int A[], int B[], int n)
             else
             {
                 rightA = midA;
-                rleftB = midB + 1;
+                leftB = midB + 1;
             }
         }
     }
 
-    return A[midA] < B[midB] ? A[midA] : B[midB]
+    return A[midA] < B[midB] ? A[midA] : B[midB];
 }
 
 int Majority(int A[], int n)
@@ -300,4 +300,10 @@ int findMissMid(int A[], int n)
             return i;
         }
     }
+}
+
+void Del_x_1(LinkList &L,ELemType x)
+{
+    LNode *p=L->next;
+    LNode *pre=L;
 }

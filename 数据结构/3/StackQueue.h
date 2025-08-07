@@ -39,4 +39,28 @@ typedef struct
 
 //循环队列
 
+void InitQueue(SqQueue &Q);
+bool isEmpty(SqQueue Q);
+bool EnQueue(SqQueue &Q,ELemType x);
+bool DeQueue(SqQueue &Q,ELemType &x);
+
+//队列的链式存储
+//先声明链表结构 再定义链式队列
+typedef struct LinkNode
+{
+    /* data */
+    ELemType data;
+    struct LinkNode *next;
+}LinkNode;
+typedef struct 
+{
+    /* data */
+    LinkNode *front,*rear;
+}LinkQueue;
+
+void InitLinkQueue(LinkQueue &Q);
+bool IsEmptyLinkQueue(LinkQueue Q);
+bool EnLinkQueue(LinkQueue &Q,ELemType x);
+bool DeLinkQueue(LinkQueue &Q,ELemType &x);
+
 

@@ -25,7 +25,7 @@ bool Del_same(SqList &L);
 bool Merge(SqList &L1, SqList &L2, SqList &L);
 bool Reverse_array(ELemType A[], int left, int right, int arrarSize);
 bool Exchang(ELemType A[], int m, int n, int arraysize);
-bool SearchExchangeInsert(ELemType A[], ELemType x);
+bool SearchExchangeInsert(ELemType A[], ELemType x,int n);
 int M_Search_On(int A[], int B[], int n);
 int M_Search_logn(int A[], int B[], int n);
 int Majority(int A[], int n);
@@ -42,7 +42,7 @@ typedef struct LNode
 int Length(LinkList L);
 LNode *GetElem(LinkList L,int i);
 bool LinklistInsert(LinkList L,int i,ELemType e);
-bool LinkListDelete(Linklist &L,int i,ElemType &e);
+bool LinkListDelete(LinkList &L,int i,ELemType &e);
 LinkList List_HeadInsert(LinkList &L);
 LinkList List_TailInsert(LinkList &L);
 
@@ -63,6 +63,10 @@ typedef struct
 {
     /* data */
     ELemType data;
-    int next
+    int next;
 }SLinkList[MAX];
+
+//WD
+void Del_x_1(LinkList &L,ELemType x);
+
 
