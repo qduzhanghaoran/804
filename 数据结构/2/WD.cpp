@@ -133,7 +133,7 @@ bool Exchang(ELemType A[], int m, int n, int arraysize)
     Reverse_array(A, n, m + n - 1, arraysize);
 }
 
-bool SearchExchangeInsert(ELemType A[], ELemType x,int n)
+bool SearchExchangeInsert(ELemType A[], ELemType x, int n)
 {
     // 数组中元素有序递增，最高效查找x，如果找到和后继元素交换，否则插入x保持递增
     /*二分查找*/
@@ -302,8 +302,176 @@ int findMissMid(int A[], int n)
     }
 }
 
-void Del_x_1(LinkList &L,ELemType x)
+void Del_x_1(LinkList &L, ELemType x)
 {
-    LNode *p=L->next;
-    LNode *pre=L;
+    LNode *p = L->next;
+    LNode *pre = L;
+    LNode *q;
+    while (p != NULL)
+    {
+        if (p->data == x)
+        {
+            q = p;
+            p = p->next;
+            pre->next = p;
+            free(q);
+        }
+        else
+        {
+            pre = p;
+            p = p->next;
+        }
+    }
+}
+
+LinkList Delete_Min(LinkList &L)
+{
+    LNode *p = L->next;
+    LNode *pre = L;
+    LNode *Minpre = L;
+    LNode *Min = p;
+
+    while (p != NULL)
+    {
+        if (p->data < Min->data)
+        {
+            Min = p;
+            Minpre = pre;
+        }
+        pre = p;
+        p = p->next;
+    }
+
+    Minpre->next = Min->next;
+    free(Min);
+    return L;
+}
+
+LinkList reverse_Linklist_1(LinkList L)
+{
+    // 头插法逆转链表
+    LNode *p, *r;
+    p = L->next;
+    L->next = NULL;
+    while (p != NULL)
+    {
+        r = p->next;
+        p->next = L->next;
+        L->next = p;
+        p = r;
+    }
+    return L;
+}
+LinkList reverse_Linklist_2(LinkList L)
+{
+    // 使用三个指针操作；
+    LNode *pre, *p = L->next, *r = p->next;
+    while (r != NULL)
+    {
+        pre = p;
+        p = r;
+        r = r->next;
+        p->next = pre;
+    }
+    L->next = p;
+    return L;
+}
+
+bool Delete_same(LinkList &L)
+{
+    if (L == NULL)
+        return false;
+
+    LNode *p = L->next;
+    LNode *pre = L;
+    LNode *q;
+    while (p->next != NULL)
+    {
+        q = p->next;
+        if (p->data == q->data)
+        {
+            p->next = q->next;
+            free(q);
+        }
+        else
+            p = p->next;
+    }
+}
+
+LinkList get_Common(LinkList A, LinkList B)
+{
+    LNode *p = A->next, *q = B->next, *r, *s;
+    LNode *C = (LNode *)malloc(sizeof(LNode));
+    r = C;
+    while (p != NULL && q != NULL)
+    {
+        if (p->data < q->data)
+            p = p->next;
+        else if (p->data > q->data)
+            q = q->next;
+        else
+        {
+            s = (LNode *)malloc(sizeof(LNode));
+            s->data = p->data;
+            r->next = s;
+            r = s;
+            p = p->next;
+            q = q->next;
+        }
+    }
+    r->next = NULL;
+    return C;
+}
+
+LinkList Union(LinkList &A, LinkList &B)
+{
+    LNode *pa = A->next, *pb = B->next;
+    LNode *pc = A, *q;
+    LNode *u;
+    while (pa && pb)
+    {
+        if (pa->data == pb->data)
+        {
+            pc->next = pa;
+            pc = pa;
+            pa = pa->next;
+            u = pb;
+            pb = pb->next;
+            free(u);
+        }
+        else if (pa->data < pb->data)
+        {
+            u = pa;
+            pa = pa->next;
+            free(u);
+        }
+        else
+        {
+            u = pb;
+            pb = pb->next;
+            free(u);
+        }
+    }
+    while (pa)
+    {
+        u = pa;
+        pa = pa->next;
+        free(u);
+    }
+    while (pb)
+    {
+        u = pb;
+        pb = pb->next;
+        free(u);
+    }
+
+    pc->next = NULL;
+    free(B);
+    return A;
+}
+
+bool pattern(LinkList A, LinkList B)
+{
+    LNode *p=A;
+    LNode *pre;
 }

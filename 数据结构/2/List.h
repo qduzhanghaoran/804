@@ -68,5 +68,10 @@ typedef struct
 
 //WD
 void Del_x_1(LinkList &L,ELemType x);
-
-
+LinkList Delete_Min(LinkList &L);
+LinkList reverse_Linklist_1(LinkList L);
+LinkList reverse_Linklist_2(LinkList L);
+bool Delete_same(LinkList &L);
+LinkList get_Common(LinkList A,LinkList B);
+LinkList Union(LinkList &A,LinkList &B);
+bool pattern(LinkList A, LinkList B);
