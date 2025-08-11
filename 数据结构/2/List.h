@@ -25,7 +25,7 @@ bool Del_same(SqList &L);
 bool Merge(SqList &L1, SqList &L2, SqList &L);
 bool Reverse_array(ELemType A[], int left, int right, int arrarSize);
 bool Exchang(ELemType A[], int m, int n, int arraysize);
-bool SearchExchangeInsert(ELemType A[], ELemType x,int n);
+bool SearchExchangeInsert(ELemType A[], ELemType x, int n);
 int M_Search_On(int A[], int B[], int n);
 int M_Search_logn(int A[], int B[], int n);
 int Majority(int A[], int n);
@@ -40,55 +40,52 @@ typedef struct LNode
 } LNode, *LinkList;
 
 int Length(LinkList L);
-LNode *GetElem(LinkList L,int i);
-bool LinklistInsert(LinkList L,int i,ELemType e);
-bool LinkListDelete(LinkList &L,int i,ELemType &e);
+LNode *GetElem(LinkList L, int i);
+bool LinklistInsert(LinkList L, int i, ELemType e);
+bool LinkListDelete(LinkList &L, int i, ELemType &e);
 LinkList List_HeadInsert(LinkList &L);
 LinkList List_TailInsert(LinkList &L);
 
-//双链表
+// 双链表
 typedef struct DNode
 {
     /* data */
     ELemType data;
-    struct DNode *prior,*next;
-    int fre;//访问频度（王道13题）
-}DNode,*DLinkList;
+    struct DNode *prior, *next;
+    int fre; // 访问频度（王道13题）
+} DNode, *DLinkList;
 
-//同理插入删除 只是对指针操作不同
+// 同理插入删除 只是对指针操作不同
 
-
-//静态链表
+// 静态链表
 #define MAX 50
-typedef struct 
+typedef struct
 {
     /* data */
     ELemType data;
     int next;
-}SLinkList[MAX];
+} SLinkList[MAX];
 
-//WD
-void Del_x_1(LinkList &L,ELemType x);
+// WD
+void Del_x_1(LinkList &L, ELemType x);
 LinkList Delete_Min(LinkList &L);
 LinkList reverse_Linklist_1(LinkList L);
 LinkList reverse_Linklist_2(LinkList L);
 bool Delete_same(LinkList &L);
-LinkList get_Common(LinkList A,LinkList B);
-LinkList Union(LinkList &A,LinkList &B);
+LinkList get_Common(LinkList A, LinkList B);
+LinkList Union(LinkList &A, LinkList &B);
 bool pattern(LinkList A, LinkList B);
-DLinkList Locate(DLinkList &L,ELemType x);
-LNode *Converse(LNode *L,int k);
+DLinkList Locate(DLinkList &L, ELemType x);
+LNode *Converse(LNode *L, int k);
 bool FindLoop(LinkList L);
-int find_k(LinkList L,int k);
+int find_k(LinkList L, int k);
 
 typedef struct T16
 {
     /* data */
     char data;
     struct T16 *next;
-}T16_Node;
+} T16_Node;
 
 int Listlen(T16_Node *head);
-T16_Node *find_list(T16_Node *list1,T16_Node *list2);
-
-
+T16_Node *find_list(T16_Node *list1, T16_Node *list2);
