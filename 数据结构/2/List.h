@@ -52,6 +52,7 @@ typedef struct DNode
     /* data */
     ELemType data;
     struct DNode *prior,*next;
+    int fre;//访问频度（王道13题）
 }DNode,*DLinkList;
 
 //同理插入删除 只是对指针操作不同
@@ -75,3 +76,5 @@ bool Delete_same(LinkList &L);
 LinkList get_Common(LinkList A,LinkList B);
 LinkList Union(LinkList &A,LinkList &B);
 bool pattern(LinkList A, LinkList B);
+DLinkList Locate(DLinkList &L,ELemType x);
+LNode *Converse(LNode *L,int k);

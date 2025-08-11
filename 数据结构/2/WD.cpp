@@ -472,6 +472,74 @@ LinkList Union(LinkList &A, LinkList &B)
 
 bool pattern(LinkList A, LinkList B)
 {
-    LNode *p=A;
-    LNode *pre;
+    LNode *p = A;
+    LNode *q = B;
+    LNode *pre = A;
+    while (pre)
+    {
+        if (!q)
+            return true;
+        if (p->data == q->data)
+        {
+            p = p->next;
+            q = q->next;
+        }
+        else
+        {
+            q = B;
+            pre = pre->next;
+            p = pre;
+        }
+    }
+    return false;
+}
+
+DLinkList Locate(DLinkList &L, ELemType x)
+{
+    DNode *p = L->next, *q;
+    while (p && p->data != x)
+        p = p->next;
+    if (!p)
+        exit(0);
+    else
+    {
+        p->fre++;
+        if (p->prior == L || p->prior->fre > p->fre)
+            return p;
+        if (p->next != NULL)
+        {
+            p->next->prior = p->prior;
+            p->prior->next = p->next;
+        }
+        q = p->prior;
+        while (q != L && q->fre <= p->fre)
+        {
+            q = q->prior;
+        }
+        p->next = q->next;
+        q->next->prior = p;
+        p->prior = q;
+        q->next = p;
+    }
+    return p;
+}
+
+LNode *Converse(LNode *L, int k)
+{
+    int n = 1;
+    LNode *p = L;
+    while (p->next != NULL)
+    {
+        p = p->next;
+        n++;
+    }
+    p->next = L; // 形成循环链表
+
+    for (int i = 1; i <= n - k; i++)
+    {
+        p = p->next;
+    }
+    L = p->next;
+    p->next = NULL;
+    return L;
 }
