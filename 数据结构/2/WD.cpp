@@ -543,3 +543,67 @@ LNode *Converse(LNode *L, int k)
     p->next = NULL;
     return L;
 }
+
+bool FindLoop(LinkList L)
+{
+    LNode *fast = L, *slow = L;
+    while (fast != NULL && fast->next != NULL) // q走的是两步
+    {
+        slow = slow->next;
+        fast = fast->next->next;
+        if (slow == fast)
+            return true;
+    }
+    return false;
+}
+
+int find_k(LinkList L, int k)//17
+{
+    LNode *slow = L, *fast = L->next;
+    for (int i = 1; i <= k; i++)
+    {
+        fast = fast->next;
+    }
+
+    while (fast->next != NULL)
+    {
+        slow = slow->next;
+        fast = fast->next;
+    }
+
+    if (slow == NULL)
+        return 0;
+    printf("%d", slow->data);
+    return 1;
+}
+
+//T16
+int Listlen(T16_Node *head)
+{
+    int len=0;
+    while(head->next!=NULL)
+    {
+        len++;
+        head=head->next;
+    }
+    return len;
+}
+
+T16_Node *find_list(T16_Node *list1,T16_Node *list2)
+{
+    int m,n;
+    T16_Node *p,*q;
+    m=Listlen(list1);
+    n=Listlen(list2);
+
+    for(p=list1;m>n;m--)
+    p=p->next;
+    for(q=list2;m<n;n--)
+    q=q->next;
+    while(p->next!=NULL && p->next!=q->next)
+    {
+        p=p->next;
+        q=q->next;
+    }
+    return p->next;
+}

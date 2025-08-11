@@ -78,3 +78,17 @@ LinkList Union(LinkList &A,LinkList &B);
 bool pattern(LinkList A, LinkList B);
 DLinkList Locate(DLinkList &L,ELemType x);
 LNode *Converse(LNode *L,int k);
+bool FindLoop(LinkList L);
+int find_k(LinkList L,int k);
+
+typedef struct T16
+{
+    /* data */
+    char data;
+    struct T16 *next;
+}T16_Node;
+
+int Listlen(T16_Node *head);
+T16_Node *find_list(T16_Node *list1,T16_Node *list2);
+
+
