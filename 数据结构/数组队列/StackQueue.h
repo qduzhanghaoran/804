@@ -35,6 +35,7 @@ typedef struct
     /* data */
     ELemType data[MaxSize];
     int front,rear;
+    int tag;//王道T1
 }SqQueue;
 
 //循环队列
@@ -64,3 +65,15 @@ bool EnLinkQueue(LinkQueue &Q,ELemType x);
 bool DeLinkQueue(LinkQueue &Q,ELemType &x);
 
 
+//WD
+
+typedef struct{
+    ELemType stack[MaxSize];
+    int top[2];
+}stk;//共享栈
+
+int push_stk(stk s,int i,ELemType x);
+int pop_stk(stk s,int i);
+
+int EnQueue_1(SqQueue &Q,ELemType x);
+int DeQueue_1(SqQueue &Q,ELemType &x);//使用tag标志避免浪费
