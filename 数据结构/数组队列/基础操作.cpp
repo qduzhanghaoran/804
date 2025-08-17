@@ -98,7 +98,7 @@ bool EnLinkQueue(LinkQueue &Q, ELemType x)
     return true;
 }
 
-bool DeLinkQueue(LinkQueue &Q, ELemType &x)//**********
+bool DeLinkQueue(LinkQueue &Q, ELemType &x) //**********
 {
 
     // 空头节点一直存在
@@ -108,6 +108,7 @@ bool DeLinkQueue(LinkQueue &Q, ELemType &x)//**********
     x = p->data;
     Q.front->next = p->next;
     // 如果只有一个节点了 Q.front指向了rear后的NULL
+    //
     if (Q.rear == p)
         Q.front = Q.rear;
     free(p);
