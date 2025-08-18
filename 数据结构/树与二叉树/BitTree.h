@@ -33,3 +33,4 @@ void CreatInThread(ThreadTree T);
 //WD
 int High_D(BiTree T);
 int High_C(BiTree T);
+bool IsComplete(BiTree T);

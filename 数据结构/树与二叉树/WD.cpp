@@ -16,7 +16,7 @@ int High_C(BiTree T)
         return 0;
 
     int front, rear = -1; // 定义队列
-    int last, high = 0;//记录每层最后一个节点的位置
+    int last, high = 0;   // 记录每层最后一个节点的位置
     BiTree Q[MaxSize];
     BiTree p;
     Q[++rear] = T;
@@ -35,3 +35,30 @@ int High_C(BiTree T)
     }
     return high;
 }
+
+bool IsComplete(BiTree T)
+{
+    BiTree Q[MaxSize];
+    int front, rear = -1;
+    BiTree q;
+    Q[++rear] = T;
+    while (front < rear)
+    {
+        q = Q[++front];
+        if (q != NULL)
+        {
+            Q[++rear] = q->lchild;
+            Q[++rear] = q->rchild;
+        }
+        else
+        {
+            while (front < rear)
+            {
+                q = Q[++front];
+                if (q)
+                    return false;
+            }
+        }
+    }
+    return true;
+} 
