@@ -61,4 +61,50 @@ bool IsComplete(BiTree T)
         }
     }
     return true;
-} 
+}
+
+void Search(BiTree bt, ELemType x)
+{
+    visitedNode s[MaxSize];
+    int top = -1;
+    visitedNode vd;
+    BiTree p=bt;
+
+    vd.node = p;
+    vd.tag = false;
+    s[++top] = vd;
+    p = p->lchild;
+    while (top >= 0)
+    {
+        while (p != NULL)
+        {
+            vd.node = p;
+            vd.tag = false;
+            s[++top] = vd;
+            p = p->lchild;
+        }
+        vd = s[top];
+        if (vd.node->rchild != NULL && vd.tag == false)
+        {
+            vd.tag = true;
+            top--;
+            s[++top] = vd;
+            p = vd.node->rchild;
+        }
+        else{
+            if(vd.node->data==x)
+            {
+                int i=top-1;
+                while(i>=0)
+                {
+                    printf("%d ",s[i--].node->data);
+                }
+            }
+            else
+            {
+                top--;
+                p=NULL;
+            }
+        }
+    }
+}

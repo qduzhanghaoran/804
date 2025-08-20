@@ -14,6 +14,8 @@ void visit(BiTree T); // 便利
 void PreOrder(BiTree T);
 void InOrder(BiTree T);
 void PostOrder(BiTree T);
+void PostOrderIterative1(BiTree T);//非递归 双栈
+void PostOrderIterative2(BiTree T);//非递归 单栈
 void LevelOrder(BiTree T);
 
 // 线索二叉树
@@ -34,3 +36,11 @@ void CreatInThread(ThreadTree T);
 int High_D(BiTree T);
 int High_C(BiTree T);
 bool IsComplete(BiTree T);
+
+//查找祖先
+typedef struct{
+    BiTree node;
+    bool tag=false;//记录右儿子是否被访问
+}visitedNode;//后序遍历——入栈
+
+void Search(BiTree bt,ELemType x);

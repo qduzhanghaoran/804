@@ -30,6 +30,68 @@ void PostOrder(BiTree T)
         visit(T);
     }
 }
+
+void PostOrderIterative1(BiTree T) // 非递归
+{
+    // 双栈
+    BiTree stack1[MaxSize];
+    BiTree stack2[MaxSize];
+    int top1 = -1;
+    int top2 = -1;
+    BiTree p;
+    stack1[++top1] = T;
+    while (top1 >= 0)
+    {
+        stack2[++top2] = stack1[top1--];
+        p = stack2[top2];
+        if (p->lchild)
+            stack1[++top1] = p->lchild;
+        if (p->rchild)
+            stack1[++top1] = p->rchild;
+    }
+    while (top2 >= 0)
+    {
+        p = stack2[top2--];
+        visit(p);
+    }
+}
+
+void PostOrderIterative2(BiTree T) // 非递归
+{
+    // 单栈
+    visitedNode s[MaxSize];
+    int top = -1;
+    BiTree p = T;   // 下一个入栈的
+    visitedNode vd; // 当前访问要入栈
+    vd.node = p;
+    vd.tag = false;
+    s[++top] = vd;
+    p = p->lchild;
+    while (top >= 0)
+    {
+        while (p != NULL)
+        {
+            vd.node = p;
+            vd.tag = false;
+            s[++top] = vd;
+            p = p->lchild;
+        } // 左子树入栈
+        vd = s[top];
+        if (vd.node->rchild != NULL && vd.tag == false)
+        {
+            top--;
+            vd.tag = true;
+            s[++top] = vd;
+            p = vd.node->rchild;
+        }
+        else
+        {
+            top--;
+            visit(vd.node);
+            p = NULL; // visit结束下一个要出栈
+        }
+    }
+}
 void LevelOrder(BiTree T)
 {
     SqQueue Q;
@@ -103,4 +165,3 @@ preThread(T->rchild)
 if(T->ltag==0)
     preThread(T->lchild)
 */
-
