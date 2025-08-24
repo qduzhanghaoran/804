@@ -44,3 +44,11 @@ typedef struct{
 }visitedNode;//后序遍历——入栈
 
 void Search(BiTree bt,ELemType x);
+void PreToPost(ELemType pre[],int l1,int h1,ELemType post[],int l2,int h2);
+int count_T5;
+void DsonNodes(BiTree T);
+void swap(BiTree T);
+int i_T7=0;
+ELemType PreNode(BiTree T,int k);
+void DeleteNode(BiTree &T);
+void search(BiTree &T,ELemType x);
