@@ -68,7 +68,7 @@ void Search(BiTree bt, ELemType x)
     visitedNode s[MaxSize];
     int top = -1;
     visitedNode vd;
-    BiTree p=bt;
+    BiTree p = bt;
 
     vd.node = p;
     vd.tag = false;
@@ -91,78 +91,82 @@ void Search(BiTree bt, ELemType x)
             s[++top] = vd;
             p = vd.node->rchild;
         }
-        else{
-            if(vd.node->data==x)
+        else
+        {
+            if (vd.node->data == x)
             {
-                int i=top-1;
-                while(i>=0)
+                int i = top - 1;
+                while (i >= 0)
                 {
-                    printf("%d ",s[i--].node->data);
+                    printf("%d ", s[i--].node->data);
                 }
             }
             else
             {
                 top--;
-                p=NULL;
+                p = NULL;
             }
         }
     }
 }
 
-void PreToPost(ELemType pre[],int l1,int h1,ELemType post[],int l2,int h2)
+void PreToPost(ELemType pre[], int l1, int h1, ELemType post[], int l2, int h2)
 {
-    //满二叉树先序遍历去除根节点之后的左右子树是平分的
-    //先序遍历第一个节点是后序遍历的最后一个节点
-    //使用递归
+    // 满二叉树先序遍历去除根节点之后的左右子树是平分的
+    // 先序遍历第一个节点是后序遍历的最后一个节点
+    // 使用递归
 
-    //pre:  A B D E C F G
-    //post: D E B F G C A
+    // pre:  A B D E C F G
+    // post: D E B F G C A
     int half;
-    if(h1>=l1)
+    if (h1 >= l1)
     {
-        post[h2]=pre[l1];
-        half=(h1-l1)/2;
-        PreToPost(pre,l1+1,l1+half,post,l2,l2+half-1);//递归左子树
-        PreToPost(pre,l1+half+1,h1,post,l2+half,h2-1);//递归右子树
+        post[h2] = pre[l1];
+        half = (h1 - l1) / 2;
+        PreToPost(pre, l1 + 1, l1 + half, post, l2, l2 + half - 1); // 递归左子树
+        PreToPost(pre, l1 + half + 1, h1, post, l2 + half, h2 - 1); // 递归右子树
     }
 }
 
 void DsonNodes(BiTree T)
 {
-    if(!T) return ;
-    if(T->lchild!=NULL && T->rchild!=NULL) count_T5++;
+    if (!T)
+        return;
+    if (T->lchild != NULL && T->rchild != NULL)
+        count_T5++;
     DsonNodes(T->lchild);
     DsonNodes(T->rchild);
 }
 
 void swap(BiTree T)
 {
-    //交换左右子树，前序和后序遍历都可以
+    // 交换左右子树，前序和后序遍历都可以
     BiTree temp;
     swap(T->lchild);
     swap(T->rchild);
 
-    //交换
-    temp=T->lchild;
-    T->lchild=T->rchild;
-    T->rchild=temp;
+    // 交换
+    temp = T->lchild;
+    T->lchild = T->rchild;
+    T->rchild = temp;
 }
 
-ELemType PreNode(BiTree T,int k)
+ELemType PreNode(BiTree T, int k)
 {
-    //先序遍历中第k个值
-    //在先序遍历的基础上进行改造
+    // 先序遍历中第k个值
+    // 在先序遍历的基础上进行改造
 
     i_T7++;
-    if(i_T7==k) return T->data;
+    if (i_T7 == k)
+        return T->data;
 
-    PreNode(T->lchild,k);
-    PreNode(T->rchild,k);
+    PreNode(T->lchild, k);
+    PreNode(T->rchild, k);
 }
 
 void DeleteNode(BiTree &T)
 {
-    if(T)
+    if (T)
     {
         DeleteNode(T->lchild);
         DeleteNode(T->rchild);
@@ -170,38 +174,38 @@ void DeleteNode(BiTree &T)
     }
 }
 
-void search(BiTree &T,ELemType x)
+void search(BiTree &T, ELemType x)
 {
     BiTree Q[MaxSize];
-    int front,rear=-1;
+    int front, rear = -1;
     BiTree t;
-    Q[++rear]=T;
-    while(rear>front)
+    Q[++rear] = T;
+    while (rear > front)
     {
-        t=Q[++front];
-        if(t->lchild)
+        t = Q[++front];
+        if (t->lchild)
         {
-            if(t->lchild->data==x)
+            if (t->lchild->data == x)
             {
                 DeleteNode(t->lchild);
-                t->lchild=NULL;
+                t->lchild = NULL;
             }
             else
             {
-                Q[++rear]=t->lchild;
+                Q[++rear] = t->lchild;
             }
         }
 
-        if(t->rchild)
+        if (t->rchild)
         {
-            if(t->rchild->data==x)
+            if (t->rchild->data == x)
             {
                 DeleteNode(t->rchild);
-                t->rchild=NULL;
+                t->rchild = NULL;
             }
             else
             {
-                Q[++rear]=t->rchild;
+                Q[++rear] = t->rchild;
             }
         }
     }
