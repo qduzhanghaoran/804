@@ -210,3 +210,28 @@ void search(BiTree &T, ELemType x)
         }
     }
 }
+
+void linkLeaf(BiTree T,BiTree head)
+{
+    //使用先序遍历
+    if(!T) return;
+    BiTree pre=NULL;
+
+    if(T->lchild==NULL && T->rchild==NULL)
+    {
+        if(pre==NULL)
+        {
+            pre=T;
+            head=T;
+        }
+        else
+        {
+            pre->lchild=T;
+            pre=T;
+        }
+    }
+    linkLeaf(T->lchild,head);
+    linkLeaf(T->rchild,head);
+    pre->rchild=NULL;
+}
+

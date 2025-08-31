@@ -53,3 +53,4 @@ int i_T7 = 0;
 ELemType PreNode(BiTree T, int k);
 void DeleteNode(BiTree &T);
 void search(BiTree &T, ELemType x);
+void linkLeaf(BiTree T,BiTree head); // 链接叶子节点
