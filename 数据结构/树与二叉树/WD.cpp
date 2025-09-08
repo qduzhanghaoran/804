@@ -211,27 +211,86 @@ void search(BiTree &T, ELemType x)
     }
 }
 
-void linkLeaf(BiTree T,BiTree head)
+void linkLeaf(BiTree T, BiTree head)
 {
-    //使用先序遍历
-    if(!T) return;
-    BiTree pre=NULL;
+    // 使用先序遍历
+    if (!T)
+        return;
+    BiTree pre = NULL;
 
-    if(T->lchild==NULL && T->rchild==NULL)
+    if (T->lchild == NULL && T->rchild == NULL)
     {
-        if(pre==NULL)
+        if (pre == NULL)
         {
-            pre=T;
-            head=T;
+            pre = T;
+            head = T;
         }
         else
         {
-            pre->lchild=T;
-            pre=T;
+            pre->lchild = T;
+            pre = T;
         }
     }
-    linkLeaf(T->lchild,head);
-    linkLeaf(T->rchild,head);
-    pre->rchild=NULL;
+    linkLeaf(T->lchild, head);
+    linkLeaf(T->rchild, head);
+    pre->rchild = NULL;
 }
 
+bool isSimiliar(BiTree T1, BiTree T2)
+{
+    if (!T1 && !T2)
+        return true;
+    if (!T1 || !T2)
+        return false;
+
+    // 都不为空
+    return isSimiliar(T1->lchild, T2->rchild) && isSimiliar(T1->rchild, T2->rchild);
+}
+
+int WPL(BiTree T, int deep)
+{
+    if (T->lchild == NULL && T->rchild == NULL)
+        return T->data * deep;
+    else
+        return WPL(T->lchild, deep + 1) + WPL(T->rchild, deep + 1);
+}
+
+void BTreeToExp(BiTree root, int deep)
+{
+    // 表达式树的中序遍历加上必要的括号即中缀表达式
+    // 重点在于加括号
+    // 中序遍历递归完成
+
+    // 程序出口
+    if (root == NULL)
+        return;
+    else if (root->lchild == NULL && root->rchild == NULL) // 叶子
+    {
+        printf("%s", root->data);
+    }
+    else
+    {
+        if (deep > 1) // 初始deep为1
+            printf("(");
+        BTreeToExp(root->lchild, deep + 1);
+        printf("%s", root->rchild);
+        BTreeToExp(root->rchild, deep + 1);
+        if (deep > 1)
+            printf(")");
+    }
+}
+
+bool judgeInorderBST(sqBitTree bt, int k, int *val)
+{
+    if (k < bt->ElemNum && bt->sqBitNode[k] != -1)
+    {
+        if (!judgeInorderBST(bt, 2 * k + 1, val))
+            return false;
+        if (bt->sqBitNode[k] <= *val)
+            return false;
+        *val = bt->sqBitNode[k];
+        if (!judgeInorderBST(bt, 2 * k + 2, val))
+            return false;
+    }
+    return true;
+}

@@ -53,4 +53,14 @@ int i_T7 = 0;
 ELemType PreNode(BiTree T, int k);
 void DeleteNode(BiTree &T);
 void search(BiTree &T, ELemType x);
-void linkLeaf(BiTree T,BiTree head); // 链接叶子节点
+void linkLeaf(BiTree T, BiTree head); // 链接叶子节点
+bool isSimiliar(BiTree T1, BiTree T2);
+int WPL(BiTree T,int deep);
+void BTreeToExp(BiTree root,int deep);
+
+//T17
+typedef struct {
+    int sqBitNode[MaxSize];
+    int ElemNum;
+}*sqBitTree;
+bool judgeInorderBST(sqBitTree bt,int k,int *val);
