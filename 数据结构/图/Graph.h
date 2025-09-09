@@ -28,3 +28,14 @@ typedef struct
 对于顶点之间的关系记录所有的边，边的信息有 ①此边指向的顶点是哪一个 下一条边（与其相邻）的是哪一条
 图只需要记录顶点和顶点之间的关系
 */
+
+//WD
+
+//EL路径
+int IsExistEL(MGraph G);
+int printKVertices(MGraph G);
+
+//图的遍历
+bool visited[MaxVertexNum];//访问标记数组
+void BFS(ALGraph G,int i);//邻接表实现BFS
+void BFSTraverse(MGraph G);
