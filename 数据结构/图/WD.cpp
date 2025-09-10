@@ -40,3 +40,29 @@ int printKVertices(MGraph G)
     return count;
 }
 
+bool isTree(ALGraph G)
+{
+    int visited[MaxVertexNum];
+    for (int i = 0; i < G.vexnum; i++)
+        visited[i] = false;
+    int vexNum = 0, arcNum = 0;
+    DFS_isTree(G, 1, vexNum, arcNum, visited);
+    if (vexNum == G.vexnum && arcNum == 2 * (G.vexnum - 1)) //访问完成所有的顶点并且访问的边数是n-1
+        return true;
+    else
+        return false;
+}
+void DFS_isTree(ALGraph G, int i, int &vexNum, int &arcNum, int visited[])
+{
+    visited[i] = true;
+    vexNum++;
+    ArcNode *p;
+    int w;
+    for (p = G.vertices[i].firstarc; p; p = p->nextarc)
+    {
+        arcNum++;
+        w = p->adjvex;
+        if (!visited[w])
+            DFS_isTree(G, i, vexNum, arcNum, visited);
+    }
+}
