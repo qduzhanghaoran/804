@@ -119,6 +119,7 @@ void DFS_1(ALGraph G, int i)
         j = p->adjvex;
         if (visited[j] == false)
         {
+            //调用函数即访问，在开头标记
             DFS_1(G, j);
         }
     }

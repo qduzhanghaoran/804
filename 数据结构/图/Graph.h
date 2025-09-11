@@ -54,3 +54,8 @@ void DFS_2(MGraph G, int i);
 //WD
 bool isTree(ALGraph G);
 void DFS_isTree(ALGraph G,int i,int &vexNum,int &arcNum,int visited[]);
+bool DFS_Trace(ALGraph G,int i,int j);
+bool BFS_Trace(ALGraph G,int i,int j);
+void findPath(ALGraph G,int i,int j,int path[],int d);
+
+//图的应用 小概率考

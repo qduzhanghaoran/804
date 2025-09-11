@@ -47,7 +47,7 @@ bool isTree(ALGraph G)
         visited[i] = false;
     int vexNum = 0, arcNum = 0;
     DFS_isTree(G, 1, vexNum, arcNum, visited);
-    if (vexNum == G.vexnum && arcNum == 2 * (G.vexnum - 1)) //访问完成所有的顶点并且访问的边数是n-1
+    if (vexNum == G.vexnum && arcNum == 2 * (G.vexnum - 1)) // 访问完成所有的顶点并且访问的边数是n-1
         return true;
     else
         return false;
@@ -65,4 +65,64 @@ void DFS_isTree(ALGraph G, int i, int &vexNum, int &arcNum, int visited[])
         if (!visited[w])
             DFS_isTree(G, i, vexNum, arcNum, visited);
     }
+}
+
+bool DFS_Trace(ALGraph G, int i, int j)
+{
+    if (i == j)
+        return true;
+    visited[i] = true;
+    ArcNode *p;
+    for (G.vertices[i].firstarc; p; p = p->nextarc)
+    {
+        if (visited[p->adjvex] == false)
+        {
+            visited[p->adjvex] = true;
+            DFS_Trace(G, p->adjvex, j);
+        }
+    }
+    return false;
+}
+bool BFS_Trace(ALGraph G, int i, int j)
+{
+    if (i == j)
+        return true;
+    SqQueue Q;
+    InitQueue(Q);
+    visited[i] = true;
+    EnQueue(Q, i);
+    ArcNode *p;
+    int w;
+    while (!isEmpty(Q))
+    {
+        DeQueue(Q, w);
+        for (p = G.vertices[w].firstarc; p; p = p->nextarc)
+        {
+            if (p->adjvex == j)
+                return true;
+            if (!visited[p->adjvex])
+                visited[p->adjvex] = true;
+        }
+    }
+    return false;
+}
+
+void findPath(ALGraph G, int i, int j, int path[], int d)
+{
+    visited[i] = true;
+    ArcNode *p;
+    path[d] = i;
+    for (p = G.vertices[i].firstarc; p; p = p->nextarc)
+    {
+        if (p->adjvex == j)
+        {
+            for (int m = 0; m <= d; m++)
+                printf("%d ", path[m]);
+        }
+        if (!visited[p->adjvex])
+        {
+            findPath(G, p->adjvex, j, path, d + 1);
+        }
+    }
+    visited[i] = false;
 }
