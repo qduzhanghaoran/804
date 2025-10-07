@@ -6,6 +6,7 @@ typedef struct BitNode
     /* data */
     ELemType data;
     struct BitNode *lchild, *rchild;
+    int count;//BST中查找第k小的值 用于记录以此为根树的节点数目
 } BitNode, *BiTree;
 
 // 二叉树的遍历
