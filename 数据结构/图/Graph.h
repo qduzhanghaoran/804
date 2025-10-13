@@ -59,3 +59,6 @@ bool BFS_Trace(ALGraph G,int i,int j);
 void findPath(ALGraph G,int i,int j,int path[],int d);
 
 //图的应用 小概率考
+
+//拓扑排序
+bool TopologicalSort(ALGraph G);

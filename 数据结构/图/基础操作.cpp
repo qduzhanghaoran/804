@@ -136,3 +136,13 @@ void DFS_2(MGraph G, int i)
             DFS_2(G, p);
     }
 }
+
+bool TopologicalSort(ALGraph G)
+{
+    SqStack S;
+    InitStack(S);
+    for(int i=0;i<G.vexnum;i++)
+    {
+        if(G.vertices[i].firstarc->adjvex)
+    }
+}
