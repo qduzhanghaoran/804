@@ -169,8 +169,43 @@ void SelectSort(ElemType A[], int n)
             if (A[j] < A[min])
                 min = j;
         }
-        if (A[min] !=i)
+        if (A[min] != i)
             ; // 交换
     }
 }
 
+void HeadAdjust(ElemType A[], int k, int len)
+{
+    // 对元素k为根的子树进行调整
+    A[0] = A[k];
+    for (int i = 2 * k; i <= len; i *= 2)
+    {
+        if (i < len && A[i] < A[i + 1])
+            i++;
+        if (A[0] >= A[i])
+            break;
+        else
+        {
+            A[k] = A[i];
+            k = i;
+        }
+    }
+}
+void BuildMaxHeap(ElemType A[], int len)
+{
+    for (int i = len / 2; i > 0; i++)
+    {
+        HeadAdjust(A, i, len);
+    }
+}
+
+void HeapSort(ElemType A[], int len)
+{
+    BuildMaxHeap(A, len);
+    for (int i = len; i > 1; i--)
+    {
+        // 输出栈顶元素
+        // 与堆底元素进行交换
+        HeadAdjust(A, 1, i - 1);
+    }
+}
