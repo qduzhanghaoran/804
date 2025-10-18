@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "../树与二叉树/BitTree.h"
+#include "../链表/List.h"
 #define ElemType int
 
 // 插入排序
@@ -193,7 +194,7 @@ void HeadAdjust(ElemType A[], int k, int len)
 }
 void BuildMaxHeap(ElemType A[], int len)
 {
-    for (int i = len / 2; i > 0; i++)
+    for (int i = len / 2; i > 0; i--)
     {
         HeadAdjust(A, i, len);
     }
@@ -207,5 +208,86 @@ void HeapSort(ElemType A[], int len)
         // 输出栈顶元素
         // 与堆底元素进行交换
         HeadAdjust(A, 1, i - 1);
+    }
+}
+
+// 链表的选择排序
+void selectSort_link(LinkList &L)
+{
+    LNode *h = L, *p, *q, *r, *s;
+    L = NULL;
+    while (h != NULL)
+    {
+        p = s = h;
+        q = r = NULL;
+        // 指针s和r记忆最大节点和他的前驱，p是工作指针，q为前驱指针；
+        while (p != NULL)
+        {
+            if (p->data > s->data)
+            {
+                s = p;
+                r = q;
+            }
+            q = p;
+            p = p->next;
+        }
+
+        if (s == h)
+            h = h->next;
+        else
+            r->next = s->next;
+        s->next = L;
+        L = s; // 头插法 升序
+    }
+}
+
+bool IsMinHeap(ElemType A[], int len)
+{
+    // 使用排除的思想
+    // 因为要比较两个孩子先判断一下单双分支
+    if (len % 2 == 0)
+    {
+        if (A[len / 2] > A[len])
+            return false;
+        for (int i = len / 2 - 1; i > 0; i--)
+        {
+            if (A[i] > A[2 * i] || A[i] > A[2 * i + 1])
+                return false;
+        }
+    }
+    else
+    {
+        for (int i = len / 2; i > 0; i--)
+        {
+            if (A[i] > A[2 * i] || A[i] > A[2 * i + 1])
+                return false;
+        }
+    }
+}
+
+void Merge(ElemType A[], int low, int mid, int high)
+{
+    int B[MaxSize];
+    int i, j, k;
+    for (k = low; k <= high; k++)
+        B[k] = A[k];
+    for (i = low, j = mid + 1, k = i; i <= mid && j <= high; k++)
+        if (B[i] <= B[j])
+            A[k] = B[i++];
+        else
+            A[k] = B[j++];
+    while (i <= mid)
+        A[k++] = B[i++];
+    while (j <= high)
+        A[k++] = B[i++];
+}
+void MergeSort(ELemType A[],int low,int high)
+{
+    if(low<high)
+    {
+        int mid=(low+high)/2;
+        MergeSort(A,low,mid);
+        MergeSort(A,mid+1,high);
+        Merge(A,low,mid,high);
     }
 }
